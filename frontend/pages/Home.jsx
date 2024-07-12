@@ -1,18 +1,13 @@
 import React from 'react'
-import Background from "../component/Background"
-import Header from '../component/Header'
+import Sidebar from '../component/Sidebar'
 
-function Home() {
+const Home = () => {
   return (
-    <div className='block' >
-      <Background />
-      <Header />
-      <div className='body flex column a-center justify-center' >
-        <div className='text flex column' >h</div>
-
-      </div>
+    <div>
+      <div>hello</div>
+      <Sidebar />
     </div>
   )
 }
 
-export default Home 
+export default Home

@@ -2,7 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signup from "../pages/Signup";
 import Login from "../pages/Login";
 import Home from "../pages/Home";
-// import Background from "../pages/Background";/
+// import Background from "../pages/Background";
+import Sidebar from '../component/Sidebar'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         {/* <Route path="/background" element={<Background />} /> */}
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />
+        <Route exact path="/s" element = {<Sidebar />} />
       </Routes>
     </BrowserRouter>
   );
