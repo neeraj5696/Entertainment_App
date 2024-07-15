@@ -1,23 +1,49 @@
-import React from 'react'
-import {FaHome} from "react-icons/fa"
+import React from "react";
+import { TbMovie } from "react-icons/tb";
+import { GoBookmark, GoVideo } from "react-icons/go";
+import { NavLink } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({children}) => {
+  const menuItem = () => [
+    {
+      path: "/movies",
+      name: "movies",
+      icon: <TbMovie />
+    },
+    {
+      path: "/tvserie",
+      name: "tvseries",
+      icon: <GoVideo />
+    },
+    {
+      path: "/bookmark",
+      name: "bookmark",
+      icon: <GoBookmark />
+    },
+  ];
+
   return (
-    <div className='w-64 bg-gray-800 fixed h-full' >
-        <div>
-            <h1 className='text-2x text-white font-bold' > Admin Dashboard</h1>
+    <div className="container">
+      <div className="sidebar">
+        <div className="top_section">
+          <h1 className="logo">Logo</h1>
+          <div className="bars">
+            <GoVideo />
+          </div>
         </div>
-        <hr /> 
-    <ul className='mt-3 text-white font-bold' >
-        <li className='mb-2 rounded hover: shadow hover:bg-blue-500 py-2' >
-            <a href='' className='px-3' >
-                <FaHome className='inline-block w-6 h-6 -mt-2' > hello</FaHome>
-            </a>
-        </li>
-    </ul>
-
+        {
+            menuItem.map((item, index) => (
+                <NavLink to={item.path} key={index} className='link' activclassName="active">
+                    <div className="icon"  > {item.icon}</div>
+                </NavLink>
+            ))
+        }
+      </div>
+      <main>
+        {children}
+      </main>
     </div>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;

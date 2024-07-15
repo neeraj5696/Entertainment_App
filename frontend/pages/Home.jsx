@@ -3,9 +3,9 @@ import Sidebar from '../component/Sidebar'
 
 const Home = () => {
   return (
-    <div>
-      <div>hello</div>
-      <Sidebar />
+    <div className='d-flex' >
+      <div className='inline'><Sidebar /></div>
+     
     </div>
   )
 }

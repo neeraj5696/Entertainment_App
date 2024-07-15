@@ -2,18 +2,22 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signup from "../pages/Signup";
 import Login from "../pages/Login";
 import Home from "../pages/Home";
-// import Background from "../pages/Background";
-import Sidebar from '../component/Sidebar'
+import Movies from '../pages/Movie';
+import TvSeries from '../pages/Tvseries';
+import Trending from "../pages/Trending";
+import Bookmark from "../pages/Bookmark";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/signup" element={<Signup />} />
-        {/* <Route path="/background" element={<Background />} /> */}
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />
-        <Route exact path="/s" element = {<Sidebar />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/TvSeries" element={<TvSeries />} />
+        <Route path="/trending" element={<Trending />} />
+        <Route path="/bookmark" element={<Bookmark />} />
       </Routes>
     </BrowserRouter>
   );
