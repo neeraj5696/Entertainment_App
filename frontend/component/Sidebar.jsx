@@ -4,30 +4,34 @@ import { GoBookmark, GoVideo } from "react-icons/go";
 import { RxDashboard } from "react-icons/rx";
 import { NavLink } from "react-router-dom";
 import { MdOutlineMovieCreation } from "react-icons/md";
-import '../component/Sidebar.css'
+import "../component/Sidebar.css";
 
 const Sidebar = ({ children }) => {
   const menuItem = [
     {
-
+      path: "/",
+      name: "dashboard",
+      icon: <MdOutlineMovieCreation />,
+    },
+    {
       path: "/trending",
       name: "Trending",
-      icon: <RxDashboard />
+      icon: <RxDashboard />,
     },
     {
       path: "/movies",
       name: "movies",
-      icon: <TbMovie />
+      icon: <TbMovie />,
     },
     {
       path: "/tvseries",
       name: "tvseries",
-      icon: <GoVideo />
+      icon: <GoVideo />,
     },
     {
       path: "/bookmark",
       name: "bookmark",
-      icon: <GoBookmark />
+      icon: <GoBookmark />,
     },
   ];
 
@@ -36,21 +40,21 @@ const Sidebar = ({ children }) => {
       <div className="sidebar">
         <div className="top_section">
           
-          <div className="icon">
-          <MdOutlineMovieCreation />
-          </div>
         </div>
-        {
-          menuItem.map((item, index) => (
-            <NavLink to={item.path} key={index} className='link' activeClassName="active">
-              <div className="icon"  > {item.icon}</div>
+        <div className="item">
+          {menuItem.map((item, index) => (
+            <NavLink
+              to={item.path}
+              key={index}
+              className="link"
+              activeClassName="active"
+            >
+              <div className="icon"> {item.icon}</div>
             </NavLink>
-          ))
-        }
+          ))}
+        </div>
       </div>
-      <main>
-        {children}
-      </main>
+      <main>{children}</main>
     </div>
   );
 };

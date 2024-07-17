@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import '../pages/Signup.css'
+import "../pages/Signup.css";
 
 function Login() {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <div className="form">
-  
-
       <form>
         <div className="input-container">
           <input
@@ -22,15 +22,22 @@ function Login() {
           <input type="password" name="pass" required placeholder="Password" />
         </div>
         <div className="button-container">
-         <button type="submit">Login to your account</button>
+          <button type="submit">Login to your account</button>
         </div>
-        <div>
-          Don't have an account? 
-          <button className='login_button' onClick={() => navigate("/signup")} type='text' value={""}>Signup</button>
+        <div className="account-message" >
+          Don't have an account?
+          <button
+            className="login_button"
+            onClick={() => navigate("/signup")}
+            type="button"
+            value={""}
+          >
+            Signup
+          </button>
         </div>
       </form>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;
