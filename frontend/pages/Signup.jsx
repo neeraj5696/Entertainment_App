@@ -1,42 +1,59 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../utility/firebase";
 import "../pages/Signup.css";
-// import { useState } from "react";
 
 function Signup() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [repass, setRepass] = useState("");
+  const [rpassword, setRpassword] = useState("");
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    if (password !== rpassword) {
+      console.log("Passwords do not match!");
+      return;
+    }
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      const user = auth.currentUser;
+      console.log(user);
+      console.log("Registered successfully!!");
+    } catch (error) {
+      console.log("Error occurred");
+    }
+  };
 
   return (
     <div className="form-container">
-      <form className="form">
+      <form onSubmit={handleRegister} className="form">
         <div className="input-container">
           <input
             type="text"
-            name="uname"
             placeholder="Email Address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
         </div>
         <div className="input-container">
           <input
             type="password"
-            name="pass"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </div>
         <div className="input-container">
           <input
             type="password"
-            name="repeatPass"
             placeholder="Repeat Password"
-            value={repass}
-            onChange={(e) => setRepass(e.target.value)}
+            value={rpassword}
+            onChange={(e) => setRpassword(e.target.value)}
+            required
           />
         </div>
         <div className="button-container">
@@ -48,7 +65,6 @@ function Signup() {
             className="login-button"
             onClick={() => navigate("/login")}
             type="button"
-            value={""}
           >
             Login
           </button>
