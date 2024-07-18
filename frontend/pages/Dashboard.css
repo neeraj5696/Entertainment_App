@@ -1,0 +1,75 @@
+/* Container for the entire app */
+.app-container {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  /* Sidebar container to ensure it stays on the left */
+  .sidebar {
+    width: 200px; /* Adjust as necessary */
+    background-color: #f4f4f4; /* Background color for the sidebar */
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Container for the search bar and movie list */
+  .movies-content {
+    flex-grow: 1;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Container for the movie posters */
+  .movies-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center; /* Center-aligns items horizontally */
+  }
+  
+  /* Style for individual movie posters */
+  .movie-poster {
+    width: 150px; /* Adjust as necessary */
+    height: auto;
+    border-radius: 4px;
+    transition: transform 0.3s;
+  }
+  
+  .movie-poster:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Adjustments for responsiveness */
+  @media (max-width: 768px) {
+    .app-container {
+      flex-direction: column;
+    }
+  
+    .sidebar {
+      width: 100%;
+    }
+  
+    .movies-content {
+      padding: 10px;
+    }
+  
+    .movies-container {
+      gap: 5px;
+    }
+  
+    .movie-poster {
+      width: 100px; /* Adjust as necessary */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .movies-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .movie-poster {
+      width: 80px; /* Adjust as necessary */
+    }
+  }
+  

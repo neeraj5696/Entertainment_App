@@ -1,39 +1,88 @@
-/* Movies.css */
+/* Container for the entire app */
 .app-container {
   display: flex;
+  gap: 20px;
 }
 
+/* Sidebar container to ensure it stays on the left */
 .sidebar {
-  width: 170px; /* Adjust based on your design */
-  background-color: #333;
-  color: #fff;
-  height: 100vh;
-  position: fixed;
+  width: 170px; /* Adjust as necessary */
 }
 
+/* Container for the search bar and movie list */
 .movies-content {
-  /* Match with sidebar width */
+  flex-grow: 1;
   padding: 20px;
-  width: calc(100% - 250px); /* Ensure content takes remaining width */
-  background-color: #f0f0f0;
 }
 
+/* Container for the search bar */
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Style for the search input field */
+.search-container input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+  flex-grow: 1; /* Makes the input field expand to fill the available space */
+}
+
+/* Style for the search button */
+.search-container button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background-color: #007BFF;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Style for the movie posters container */
 .movies-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+  gap: 10px;
 }
 
+/* Style for individual movie posters */
 .movie-poster {
-  width: 200px; /* Adjust size as needed */
+  width: 200px; /* Adjust as necessary */
   height: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 4px;
+  transition: transform 0.3s;
 }
 
 .movie-poster:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Adjustments for responsiveness */
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .search-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-container input[type="text"] {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .movies-container {
+    justify-content: center;
+  }
 }

@@ -5,34 +5,66 @@ import Sidebar from "../component/Sidebar";
 
 const Movies = () => {
   const [movieList, setMovieList] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredMovies, setFilteredMovies] = useState([]);
 
   useEffect(() => {
     const fetchMovies = async () => {
       try {
         const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`);
         const data = await response.json();
-        setMovieList(data.results); // Make sure to access the 'results' property which contains the list of movies
+        setMovieList(data.results);
+        setFilteredMovies(data.results); // Initialize filtered movies with all movies
       } catch (error) {
         console.error("Error fetching movie list:", error);
       }
     };
 
+  console.log(movieList)
+
     fetchMovies();
   }, []);
 
+  const handleSearch = () => {
+    const filtered = movieList.filter(movie => 
+      movie.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredMovies(filtered);
+  };
+
   return (
     <div className="app-container">
-      <Sidebar />
+      <div  ><Sidebar /></div>
       <div className="movies-content">
-        <div className="movies-container">
-          {movieList.map((movie) => (
-            <img key={movie.id} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} className="movie-poster" />
-          ))}
+        <div className="search-container">
+          <input 
+            type="text" 
+            placeholder="Search for a movie..." 
+            value={searchQuery} 
+            onChange={(e) => setSearchQuery(e.target.value)} 
+          />
+          <button onClick={handleSearch}>Search</button>
         </div>
+        <div className="movies-container">
+        {filteredMovies.map((movie) => (
+            <div key={movie.id} className="movie-item">
+              <img 
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 
+                alt={movie.title} 
+                className="movie-poster" 
+              />
+             <div className="flex" >
+             <div> <p className="movie-title">{movie.title}</p></div>
+             <div> <p className="movie-vote_average">{movie.vote_average}</p></div>
+             </div>
+            </div>
+          ))}
+          
+        </div>
+        
       </div>
     </div>
   );
 };
 
 export default Movies;
-
