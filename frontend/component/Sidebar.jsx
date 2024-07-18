@@ -3,34 +3,29 @@ import { TbMovie } from "react-icons/tb";
 import { GoBookmark, GoVideo } from "react-icons/go";
 import { RxDashboard } from "react-icons/rx";
 import { NavLink } from "react-router-dom";
-import { MdOutlineMovieCreation } from "react-icons/md";
 import "../component/Sidebar.css";
 
 const Sidebar = ({ children }) => {
   const menuItem = [
     {
-      path: "/",
-      name: "dashboard",
-      icon: <MdOutlineMovieCreation />,
-    },
-    {
-      path: "/trending",
-      name: "Trending",
+      path: "/dashboard",
+      name: "Dashboard",
       icon: <RxDashboard />,
     },
+    
     {
       path: "/movies",
-      name: "movies",
+      name: "Movies",
       icon: <TbMovie />,
     },
     {
       path: "/tvseries",
-      name: "tvseries",
+      name: "TV Series",
       icon: <GoVideo />,
     },
     {
       path: "/bookmark",
-      name: "bookmark",
+      name: "Bookmark",
       icon: <GoBookmark />,
     },
   ];
@@ -38,9 +33,7 @@ const Sidebar = ({ children }) => {
   return (
     <div className="container">
       <div className="sidebar">
-        <div className="top_section">
-          
-        </div>
+        <div className="top_section"></div>
         <div className="item">
           {menuItem.map((item, index) => (
             <NavLink
@@ -49,12 +42,13 @@ const Sidebar = ({ children }) => {
               className="link"
               activeClassName="active"
             >
-              <div className="icon"> {item.icon}</div>
+              <div className="icon">{item.icon}</div>
+              <div className="link_text">{item.name}</div>
             </NavLink>
           ))}
         </div>
       </div>
-      <main>{children}</main>
+     
     </div>
   );
 };

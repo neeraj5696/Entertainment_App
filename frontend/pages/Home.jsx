@@ -1,13 +1,16 @@
-import React from 'react'
-import Sidebar from '../component/Sidebar'
+import React from "react";
+import Sidebar from "../component/Sidebar";
 
 const Home = () => {
   return (
-    <div className='d-flex' >
-      <div className='inline text-lg'><Sidebar /></div>
-     
+    <div className="d-flex">
+      <div className="inline text-lg">
+        <Sidebar />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
+
+

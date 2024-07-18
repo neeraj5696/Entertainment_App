@@ -1,0 +1,39 @@
+/* Movies.css */
+.app-container {
+  display: flex;
+}
+
+.sidebar {
+  width: 170px; /* Adjust based on your design */
+  background-color: #333;
+  color: #fff;
+  height: 100vh;
+  position: fixed;
+}
+
+.movies-content {
+  /* Match with sidebar width */
+  padding: 20px;
+  width: calc(100% - 250px); /* Ensure content takes remaining width */
+  background-color: #f0f0f0;
+}
+
+.movies-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.movie-poster {
+  width: 200px; /* Adjust size as needed */
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.movie-poster:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
