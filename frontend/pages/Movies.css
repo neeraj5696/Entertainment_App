@@ -1,88 +1,110 @@
-/* Container for the entire app */
+/* Movies.css */
+
 .app-container {
   display: flex;
-  gap: 20px;
+  height: 100vh; /* Full height to fit the screen */
+  overflow: hidden;
 }
 
-/* Sidebar container to ensure it stays on the left */
 .sidebar {
-  width: 170px; /* Adjust as necessary */
+  width: 200px; /* Adjust the width of the sidebar */
+  background-color: #333;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  overflow-y: auto; /* Scrollable sidebar */
 }
 
-/* Container for the search bar and movie list */
 .movies-content {
-  flex-grow: 1;
+  flex: 1; /* Take the remaining width */
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* Scrollable content */
   padding: 20px;
+  box-sizing: border-box;
 }
 
-/* Container for the search bar */
 .search-container {
   display: flex;
-  align-items: center;
+  justify-content: center;
   margin-bottom: 20px;
 }
 
-/* Style for the search input field */
-.search-container input[type="text"] {
+.search-container input {
   padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  width: 200px;
   margin-right: 10px;
-  flex-grow: 1; /* Makes the input field expand to fill the available space */
 }
 
-/* Style for the search button */
 .search-container button {
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  background-color: #007BFF;
-  color: white;
-  border-radius: 4px;
-  cursor: pointer;
+  padding: 10px;
 }
 
-/* Style for the movie posters container */
 .movies-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 20px;
+  justify-content: center;
 }
 
-/* Style for individual movie posters */
-.movie-poster {
-  width: 200px; /* Adjust as necessary */
-  height: auto;
-  border-radius: 4px;
-  transition: transform 0.3s;
+.movie-item {
+  position: relative;
+  width: 150px; /* Adjust to reduce the size */
+  border: 3px solid rgb(35, 35, 220);
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.movie-poster:hover {
-  transform: scale(1.05);
+.movie-item::before {
+  content: "";
+  display: block;
+  padding-bottom: 150%; /* 2/3 aspect ratio */
 }
 
-/* Adjustments for responsiveness */
-@media (max-width: 768px) {
-  .app-container {
-    flex-direction: column;
-  }
+.movie-item img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-  .sidebar {
-    width: 100%;
-  }
+.bookmark-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
 
-  .search-container {
-    flex-direction: column;
-    align-items: stretch;
-  }
+.flex {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  z-index: 2;
+}
 
-  .search-container input[type="text"] {
-    margin-right: 0;
-    margin-bottom: 10px;
-  }
+.movie-title, .movie-vote_average {
+  margin: 0;
+  
+}
 
-  .movies-container {
-    justify-content: center;
-  }
+.bookmarked-section {
+  margin-top: 20px;
+}
+
+.bookmarked-section h2 {
+  text-align: center;
+  margin-bottom: 20px;
 }

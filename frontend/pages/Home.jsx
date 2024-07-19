@@ -1,11 +1,15 @@
 import React from "react";
 import Sidebar from "../component/Sidebar";
+import Dashboard from "./Dashboard";
 
 const Home = () => {
   return (
-    <div className="d-flex">
-      <div className="inline text-lg">
+    <div >
+      <div >
         <Sidebar />
+      </div>
+      <div>
+        <Dashboard />
       </div>
     </div>
   );

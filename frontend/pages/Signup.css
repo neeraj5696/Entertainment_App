@@ -4,7 +4,7 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color:white;
+  background-color:rgb(31, 91, 103);
   font-family: Arial, sans-serif;
 }
 
