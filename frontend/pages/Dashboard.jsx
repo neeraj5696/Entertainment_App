@@ -1,85 +1,106 @@
 import React, { useState, useEffect } from "react";
-import "../pages/Dashboard.css";
 import { FaRegBookmark } from "react-icons/fa";
+import "../pages/Dashboard.css";
 import { API_KEY } from "../utility/constant";
 import Sidebar from "../component/Sidebar";
 
 const Dashboard = () => {
-  const [movieList, setMovieList] = useState([]);
+  const [itemList, setItemList] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredMovies, setFilteredMovies] = useState([]);
-  const [bookmarkedMovies, setBookmarkedMovies] = useState([]);
+  const [filteredItems, setFilteredItems] = useState([]);
+  const [bookmarkedItems, setBookmarkedItems] = useState([]);
 
   useEffect(() => {
-    const fetchMovies = async () => {
+    const fetchItems = async () => {
       try {
         const response = await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`);
         const data = await response.json();
-        setMovieList(data.results); // Make sure to access the 'results' property which contains the list of movies
-        setFilteredMovies(data.result)
+        setItemList(data.results);
+        setFilteredItems(data.results);
       } catch (error) {
-        console.error("Error fetching movie list:", error);
+        console.error("Error fetching item list:", error);
       }
     };
 
-    fetchMovies();
+    fetchItems();
   }, []);
- 
-  const handleSearch = ()=>{
-    const filtered = movieList.filter(movie =>
-      movie.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setFilteredMovies(filtered)
-  }
 
-  const handleBookmark = (movie)=>{
-    setBookmarkedMovies((prev) =>[...prev, movie])
-  }
-  
+  const handleSearch = () => {
+    const filtered = itemList.filter((item) =>
+      (item.title || item.name).toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredItems(filtered);
+  };
+
+  const handleBookmark = (item) => {
+    if (!bookmarkedItems.some(bookmarked => bookmarked.id === item.id)) {
+      setBookmarkedItems((prev) => [...prev, item]);
+    }
+  };
 
   return (
-    <div className="app-container">
+    <div className="dashboard-container">
       <Sidebar />
-      <div className="movies-content">
-        <div>
-          <input type="text" placeholder="Search" value={searchQuery} onChange={(e)=>setSearchQuery(e.target.value)}
+      <div className="dashboard-content">
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search for an item..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
           <button onClick={handleSearch}>Search</button>
         </div>
-        <div className="movies-container">
-          {movieList.map((movie) => (
-            <img key={movie.id} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} className="movie-poster" />
-          ))}
-        </div>
-        <div className="bookmarked-section">
-          <h2>Bookmarked Movies</h2>
-          <div className="movies-container">
-            {bookmarkedMovies.map((movie) => (
-              <div key={movie.id} className="movie-item">
-                <img 
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 
-                alt={movie.title} 
-                className="movie-poster" 
+        <div className="items-container">
+          {filteredItems.map((item) => (
+            <div key={item.id} className="item">
+              <img
+                src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                alt={item.title || item.name}
+                className="item-poster"
               />
-               <button 
-                className="bookmark-button" 
-                onClick={() => handleBookmark(movie)}
+              <button
+                className="bookmark-button"
+                onClick={() => handleBookmark(item)}
               >
                 <FaRegBookmark />
               </button>
               <div className="flex">
-                <div><p className="movie-title">{movie.title.slice(0, 12)}</p></div>
-                <div><p className="movie-vote_average">{movie.vote_average}</p></div>
+                <div>
+                  <p className="item-title">{(item.title || item.name).slice(0, 12)}</p>
+                </div>
+                <div>
+                  <p className="item-vote_average">{item.vote_average ? item.vote_average.toFixed(1) : 'N/A'}</p>
+                </div>
               </div>
-             
             </div>
           ))}
         </div>
-      </div>
+        <div className="bookmarked-section">
+          <h2>Bookmarked Items</h2>
+          <div className="items-container">
+            {bookmarkedItems.map((item) => (
+              <div key={item.id} className="item">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                  alt={item.title || item.name}
+                  className="item-poster"
+                />
+                <div className="flex">
+                  <div>
+                    <p className="item-title">{item.title || item.name}</p>
+                  </div>
+                  <div>
+                    <p className="item-vote_average">{item.vote_average ? item.vote_average.toFixed(1) : 'N/A'}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
 export default Dashboard;
-

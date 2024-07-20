@@ -19,6 +19,7 @@ const Movies = () => {
         const data = await response.json();
         setMovieList(data.results);
         setFilteredMovies(data.results);
+        console.log(data.results)
       } catch (error) {
         console.error("Error fetching movie list:", error);
       }
@@ -26,6 +27,8 @@ const Movies = () => {
 
     fetchMovies();
   }, []);
+
+ 
 
   const handleSearch = () => {
     const filtered = movieList.filter((movie) =>
@@ -72,7 +75,7 @@ const Movies = () => {
                   <p className="movie-title">{movie.title.slice(0, 12)}</p>
                 </div>
                 <div>
-                  <p className="movie-vote_average">{movie.vote_average}</p>
+                  <p className="movie-vote_average">{movie.vote_average.toFixed(1)}</p>
                 </div>
               </div>
             </div>

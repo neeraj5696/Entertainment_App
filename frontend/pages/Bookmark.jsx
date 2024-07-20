@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import '../pages/Bookmark.css'; // Ensure you have the correct path
+import Sidebar from '../component/Sidebar';
 
 function Bookmark() {
   const [bookmarkedMovies, setBookmarkedMovies] = useState([]);
@@ -17,7 +18,8 @@ function Bookmark() {
   };
 
   return (
-    <div>
+    <div className='bookmark-container'>
+      <div><Sidebar /></div>
       <div className="bookmarked-section">
         <h2>Bookmarked Movies</h2>
         <button className="arrow-button left" onClick={() => scroll('left')}>&lt;</button>
