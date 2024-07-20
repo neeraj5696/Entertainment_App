@@ -3,14 +3,12 @@
 .container {
   display: flex;
   width: 170px;
-
   border-radius: 5px;
 }
 
 .sidebar {
   width: auto; 
-  height: 100vh;
- 
+  height: 95vh;
   color: rgb(51, 36, 36);
   display: flex;
   flex-direction: column;
@@ -24,6 +22,18 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
+  cursor: pointer;
+  border: 2px solid blue;
+  border-radius: 10px;
+}
+
+.top_section:hover{
+  cursor: pointer;
+  border: 2px solid rgb(10, 10, 69);
+  background-color: rgb(28, 25, 25);
+  color: rgb(214, 207, 220);
+  border-radius: 10px;
+  padding: 18.5px;
 }
 
 .item {
@@ -56,4 +66,18 @@ main {
   margin-left: 250px; 
   padding: 20px;
   flex-grow: 1;
+}
+
+.bottom_section {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: auto;
+  color: white;
+}
+
+.user_icon {
+  font-size: 24px;
+  margin-right: 10px;
 }

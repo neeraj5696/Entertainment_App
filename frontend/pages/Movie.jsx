@@ -3,12 +3,15 @@ import { FaRegBookmark } from "react-icons/fa";
 import "../pages/Movies.css";
 import { API_KEY } from "../utility/constant";
 import Sidebar from "../component/Sidebar";
+import { addBookmark } from "../store/store";
+import { useDispatch } from "react-redux";
 
 const Movies = () => {
   const [movieList, setMovieList] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [bookmarkedMovies, setBookmarkedMovies] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -38,7 +41,7 @@ const Movies = () => {
   };
 
   const handleBookmark = (movie) => {
-    setBookmarkedMovies((prev) => [...prev, movie]);
+    dispatch(addBookmark(movie));
   };
 
   return (

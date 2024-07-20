@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { FaRegBookmark } from "react-icons/fa";
-import '..//pages/Tvseries.css'
+import "..//pages/Tvseries.css";
 import { API_KEY } from "../utility/constant";
 import Sidebar from "../component/Sidebar";
+import { addTvSeriesBookmark } from "../store/store";
+import { useDispatch } from "react-redux";
 
 const TVSeries = () => {
   const [tvSeriesList, setTvSeriesList] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredTVSeries, setFilteredTVSeries] = useState([]);
   const [bookmarkedTVSeries, setBookmarkedTVSeries] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchTVSeries = async () => {
@@ -19,6 +22,7 @@ const TVSeries = () => {
         const data = await response.json();
         setTvSeriesList(data.results);
         setFilteredTVSeries(data.results);
+        console.log(data.results);
       } catch (error) {
         console.error("Error fetching TV series list:", error);
       }
@@ -35,7 +39,7 @@ const TVSeries = () => {
   };
 
   const handleBookmark = (tvSeries) => {
-    setBookmarkedTVSeries((prev) => [...prev, tvSeries]);
+    dispatch(addTvSeriesBookmark(tvSeries));
   };
 
   return (
@@ -72,7 +76,9 @@ const TVSeries = () => {
                   <p className="tvseries-name">{tvSeries.name.slice(0, 12)}</p>
                 </div>
                 <div>
-                  <p className="tvseries-vote_average">{tvSeries.vote_average.toFixed(1)}</p>
+                  <p className="tvseries-vote_average">
+                    {tvSeries.vote_average.toFixed(1)}
+                  </p>
                 </div>
               </div>
             </div>
@@ -93,7 +99,9 @@ const TVSeries = () => {
                     <p className="tvseries-name">{tvSeries.name}</p>
                   </div>
                   <div>
-                    <p className="tvseries-vote_average">{tvSeries.vote_average}</p>
+                    <p className="tvseries-vote_average">
+                      {tvSeries.vote_average}
+                    </p>
                   </div>
                 </div>
               </div>

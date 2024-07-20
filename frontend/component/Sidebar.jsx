@@ -2,7 +2,8 @@ import React from "react";
 import { TbMovie } from "react-icons/tb";
 import { GoBookmark, GoVideo } from "react-icons/go";
 import { RxDashboard } from "react-icons/rx";
-import { NavLink } from "react-router-dom";
+import { FaUser } from "react-icons/fa"; // Import user icon
+import { NavLink, useNavigate } from "react-router-dom";
 import "../component/Sidebar.css";
 
 const Sidebar = ({ children }) => {
@@ -12,7 +13,6 @@ const Sidebar = ({ children }) => {
       name: "Dashboard",
       icon: <RxDashboard />,
     },
-    
     {
       path: "/movies",
       name: "Movies",
@@ -29,11 +29,12 @@ const Sidebar = ({ children }) => {
       icon: <GoBookmark />,
     },
   ];
+  const navigate = useNavigate();
 
   return (
     <div className="container">
       <div className="sidebar">
-        <div className="top_section">Home</div>
+        <div className="top_section" onClick={() => navigate("/")}>Home</div>
         <div className="item">
           {menuItem.map((item, index) => (
             <NavLink
@@ -47,8 +48,11 @@ const Sidebar = ({ children }) => {
             </NavLink>
           ))}
         </div>
+        <div className="bottom_section" onClick={() => navigate("/signup")}>
+          <FaUser className="user_icon" />
+          <div className="link_text">Signup</div>
+        </div>
       </div>
-     
     </div>
   );
 };
