@@ -9,26 +9,42 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rpassword, setRpassword] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleRegister = async (e) => {
     e.preventDefault();
     if (password !== rpassword) {
-      console.log("Passwords do not match!");
+      setErrorMessage("Passwords do not match!");
       return;
     }
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      const user = auth.currentUser;
-      console.log(user);
-      console.log("Registered successfully!!");
+      setSuccessMessage("Registered successfully! Redirecting...");
+      
+      // Redirect to dashboard after a short delay to show success message
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 2000); // 2 seconds delay
     } catch (error) {
-      console.log("Error occurred");
+      console.log("Error occurred", error);
+      setErrorMessage("Failed to register. Please try again.");
     }
   };
 
   return (
     <div className="form-container">
       <form onSubmit={handleRegister} className="form">
+        {successMessage && (
+          <div className="success-message">
+            {successMessage}
+          </div>
+        )}
+        {errorMessage && (
+          <div className="error-message">
+            {errorMessage}
+          </div>
+        )}
         <div className="input-container">
           <input
             type="text"

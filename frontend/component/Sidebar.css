@@ -2,19 +2,22 @@
 
 .container {
   display: flex;
-  width: 170px;
+  width: 220px; /* Increased width to avoid cutting off content */
   border-radius: 5px;
 }
 
 .sidebar {
-  width: auto; 
-  height: 95vh;
+  height: 100vh; /* Full height */
   color: rgb(51, 36, 36);
   display: flex;
   flex-direction: column;
-  position: fixed; 
+  position: fixed; /* Fixed position */
   left: 0;
   top: 0;
+  border: 2px solid #ddd; /* Border around the sidebar */
+  border-radius: 5px;
+  background-color: #333; /* Background color of the sidebar */
+  overflow: hidden; /* Prevent overflow */
 }
 
 .top_section {
@@ -23,17 +26,14 @@
   justify-content: center;
   padding: 20px;
   cursor: pointer;
-  border: 2px solid blue;
-  border-radius: 10px;
+  color: white;
+  border-bottom: 1px solid #444; /* Border below top section */
 }
 
-.top_section:hover{
+.top_section:hover {
   cursor: pointer;
-  border: 2px solid rgb(10, 10, 69);
   background-color: rgb(28, 25, 25);
   color: rgb(214, 207, 220);
-  border-radius: 10px;
-  padding: 18.5px;
 }
 
 .item {
@@ -50,22 +50,16 @@
 }
 
 .link:hover {
-  background-color: #34495e; 
+  background-color: #34495e;
 }
 
 .icon {
-  font-size: 24px; 
+  font-size: 24px;
   margin-right: 10px;
 }
 
 .active {
-  background-color: #1abc9c; 
-}
-
-main {
-  margin-left: 250px; 
-  padding: 20px;
-  flex-grow: 1;
+  background-color: #1abc9c;
 }
 
 .bottom_section {
@@ -75,9 +69,15 @@ main {
   cursor: pointer;
   margin-top: auto;
   color: white;
+  border-top: 1px solid #444; /* Border between items and bottom section */
 }
 
 .user_icon {
   font-size: 24px;
   margin-right: 10px;
+}
+
+/* Ensure content doesn't overflow */
+.sidebar, .container {
+  box-sizing: border-box;
 }
