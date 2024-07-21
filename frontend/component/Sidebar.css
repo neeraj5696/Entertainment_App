@@ -1,23 +1,22 @@
 /* Sidebar.css */
 
-.container {
-  display: flex;
-  width: 220px; /* Increased width to avoid cutting off content */
-  border-radius: 5px;
-}
 
-.sidebar {
-  height: 100vh; /* Full height */
+
+
+.conta {
+  height: 100vh; 
+  width: 200px;
   color: rgb(51, 36, 36);
   display: flex;
   flex-direction: column;
-  position: fixed; /* Fixed position */
+  /* position: fixed;  */
   left: 0;
   top: 0;
-  border: 2px solid #ddd; /* Border around the sidebar */
+  border: 2px solid #ddd; 
   border-radius: 5px;
-  background-color: #333; /* Background color of the sidebar */
-  overflow: hidden; /* Prevent overflow */
+  background-color: #03021a; 
+  overflow: hidden; 
+  justify-content: space-between;
 }
 
 .top_section {

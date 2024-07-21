@@ -6,7 +6,7 @@ import { FaUser } from "react-icons/fa"; // Import user icon
 import { NavLink, useNavigate } from "react-router-dom";
 import "../component/Sidebar.css";
 
-const Sidebar = () => {
+const Sidebar = ({ }) => {
   const menuItem = [
     {
       path: "/dashboard",
@@ -29,14 +29,13 @@ const Sidebar = () => {
       icon: <GoBookmark />,
     },
   ];
+  const navigate = useNavigate();
+
   return (
-    <div>
-      <div className="conta" >
-        <div className="fox1" >
-        <div className="top_section" onClick={() => navigate("/")}>
-          Home
-        </div>
-        <div className="">
+    <div className="container">
+      <div className="sidebar">
+        <div className="top_section" onClick={() => navigate("/")}>Home</div>
+        <div className="item">
           {menuItem.map((item, index) => (
             <NavLink
               to={item.path}
@@ -49,13 +48,9 @@ const Sidebar = () => {
             </NavLink>
           ))}
         </div>
-        </div>
-       
-        <div className="fox2" >
         <div className="bottom_section" onClick={() => navigate("/signup")}>
           <FaUser className="user_icon" />
           <div className="link_text">Signup</div>
-        </div>
         </div>
       </div>
     </div>
