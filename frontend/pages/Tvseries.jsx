@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { FaRegBookmark } from "react-icons/fa";
-import "..//pages/Tvseries.css";
+import { FaRegBookmark, FaBookmark } from "react-icons/fa";
+import "../pages/Tvseries.css";
 import { API_KEY } from "../utility/constant";
 import Sidebar from "../component/Sidebar";
-import { addTvSeriesBookmark } from "../store/store";
-import { useDispatch } from "react-redux";
+import { addTvSeriesBookmark, removeTvSeriesBookmark } from "../store/store";
+import { useDispatch, useSelector } from "react-redux";
 
 const TVSeries = () => {
   const [tvSeriesList, setTvSeriesList] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredTVSeries, setFilteredTVSeries] = useState([]);
-  const [bookmarkedTVSeries, setBookmarkedTVSeries] = useState([]);
   const dispatch = useDispatch();
+  const bookmarkedTvSeries = useSelector((state) => state.netflix.bookmarkedTvSeries);
 
   useEffect(() => {
     const fetchTVSeries = async () => {
@@ -39,7 +39,15 @@ const TVSeries = () => {
   };
 
   const handleBookmark = (tvSeries) => {
-    dispatch(addTvSeriesBookmark(tvSeries));
+    if (bookmarkedTvSeries.find((t) => t.id === tvSeries.id)) {
+      dispatch(removeTvSeriesBookmark(tvSeries));
+    } else {
+      dispatch(addTvSeriesBookmark(tvSeries));
+    }
+  };
+
+  const isBookmarked = (tvSeries) => {
+    return bookmarkedTvSeries.some((t) => t.id === tvSeries.id);
   };
 
   return (
@@ -69,7 +77,7 @@ const TVSeries = () => {
                 className="bookmark-button"
                 onClick={() => handleBookmark(tvSeries)}
               >
-                <FaRegBookmark />
+                {isBookmarked(tvSeries) ? <FaBookmark /> : <FaRegBookmark />}
               </button>
               <div className="flex">
                 <div>
@@ -83,30 +91,6 @@ const TVSeries = () => {
               </div>
             </div>
           ))}
-        </div>
-        <div className="bookmarked-section">
-          <h2>Bookmarked TV Series</h2>
-          <div className="tvseries-container">
-            {bookmarkedTVSeries.map((tvSeries) => (
-              <div key={tvSeries.id} className="tvseries-item">
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${tvSeries.poster_path}`}
-                  alt={tvSeries.name}
-                  className="tvseries-poster"
-                />
-                <div className="flex">
-                  <div>
-                    <p className="tvseries-name">{tvSeries.name}</p>
-                  </div>
-                  <div>
-                    <p className="tvseries-vote_average">
-                      {tvSeries.vote_average}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </div>
