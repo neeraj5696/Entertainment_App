@@ -1,12 +1,15 @@
 import React, { useRef } from 'react';
-import { useSelector } from 'react-redux';
-import '../pages/Bookmark.css'; 
+import { useSelector, useDispatch } from 'react-redux';
+import '../pages/Bookmark.css';
 import Sidebar from '../component/Sidebar';
+import { FaBookmark } from "react-icons/fa";
+import { removeBookmark, removeTvSeriesBookmark } from '../store/store';
 
 function Bookmark() {
-  const bookmarkedMovies = useSelector((state) => state.netflix.bookmarkedMovies); // to Get bookmarked movies from Redux
-  const bookmarkedTvSeries = useSelector((state) => state.netflix.bookmarkedTvSeries); // Corrected here
+  const bookmarkedMovies = useSelector((state) => state.netflix.bookmarkedMovies);
+  const bookmarkedTvSeries = useSelector((state) => state.netflix.bookmarkedTvSeries);
   const scrollRef = useRef(null);
+  const dispatch = useDispatch();
 
   const scroll = (direction) => {
     const { current } = scrollRef;
@@ -15,6 +18,10 @@ function Bookmark() {
     } else {
       current.scrollLeft += 200;
     }
+  };
+
+  const handleRemoveBookmark = (movie) => {
+    dispatch(removeBookmark(movie.id));
   };
 
   return (
@@ -32,6 +39,12 @@ function Bookmark() {
                   alt={movie.title}
                   className="movie-poster"
                 />
+                <button
+                  className="bookmark-button bookmarked"
+                  onClick={() => handleRemoveBookmark(movie)}
+                >
+                  <FaBookmark />
+                </button>
                 <div className="flex">
                   <div><p className="movie-title">{movie.title}</p></div>
                   <div><p className="movie-vote_average">{movie.vote_average.toFixed(1)}</p></div>
@@ -43,7 +56,7 @@ function Bookmark() {
         </div>
         <div className="bookmarked-section">
           <h2>Bookmarked TV Series</h2>
-          <div className="horizontal-scroll" ref={scrollRef}> {/* Corrected here */}
+          <div className="horizontal-scroll" ref={scrollRef}>
             {bookmarkedTvSeries.map((tvSeries) => (
               <div key={tvSeries.id} className="tvseries-item">
                 <img
@@ -51,6 +64,12 @@ function Bookmark() {
                   alt={tvSeries.name}
                   className="tvseries-poster"
                 />
+                <button
+                  className="bookmark-button bookmarked"
+                  onClick={() => dispatch(removeTvSeriesBookmark(tvSeries.id))}
+                >
+                  <FaBookmark />
+                </button>
                 <div className="flex">
                   <div>
                     <p className="tvseries-name">{tvSeries.name}</p>

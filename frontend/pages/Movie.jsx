@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { FaRegBookmark } from "react-icons/fa";
+import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import "../pages/Movies.css";
 import { API_KEY } from "../utility/constant";
 import Sidebar from "../component/Sidebar";
-import { addBookmark } from "../store/store";
-import { useDispatch } from "react-redux";
+import { addBookmark, removeBookmark } from "../store/store";
+import { useDispatch, useSelector } from "react-redux";
 
 const Movies = () => {
   const [movieList, setMovieList] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredMovies, setFilteredMovies] = useState([]);
-  const [bookmarkedMovies, setBookmarkedMovies] = useState([]);
   const dispatch = useDispatch();
+  const bookmarkedMovies = useSelector((state) => state.netflix.bookmarkedMovies);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -22,7 +22,7 @@ const Movies = () => {
         const data = await response.json();
         setMovieList(data.results);
         setFilteredMovies(data.results);
-        console.log(data.results)
+        console.log(data.results);
       } catch (error) {
         console.error("Error fetching movie list:", error);
       }
@@ -30,8 +30,6 @@ const Movies = () => {
 
     fetchMovies();
   }, []);
-
- 
 
   const handleSearch = () => {
     const filtered = movieList.filter((movie) =>
@@ -41,7 +39,11 @@ const Movies = () => {
   };
 
   const handleBookmark = (movie) => {
-    dispatch(addBookmark(movie));
+    if (bookmarkedMovies.some((bm) => bm.id === movie.id)) {
+      dispatch(removeBookmark(movie.id));
+    } else {
+      dispatch(addBookmark(movie));
+    }
   };
 
   return (
@@ -68,10 +70,10 @@ const Movies = () => {
                 className="movie/tv-poster"
               />
               <button
-                className="bookmark-button"
+                className={`bookmark-button ${bookmarkedMovies.some((bm) => bm.id === movie.id) ? "bookmarked" : ""}`}
                 onClick={() => handleBookmark(movie)}
               >
-                <FaRegBookmark />
+                {bookmarkedMovies.some((bm) => bm.id === movie.id) ? <FaBookmark /> : <FaRegBookmark />}
               </button>
               <div className="flex">
                 <div>
@@ -83,28 +85,6 @@ const Movies = () => {
               </div>
             </div>
           ))}
-        </div>
-        <div className="bookmarked-section">
-          <h2>Bookmarked Movies</h2>
-          <div className="movies-container">
-            {bookmarkedMovies.map((movie) => (
-              <div key={movie.id} className="movie-item">
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.title}
-                  className="movie-poster"
-                />
-                <div className="flex">
-                  <div>
-                    <p className="movie-title">{movie.title}</p>
-                  </div>
-                  <div>
-                    <p className="movie-vote_average">{movie.vote_average}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </div>
