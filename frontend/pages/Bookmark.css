@@ -65,4 +65,6 @@
   .arrow-button.right {
     right: 0;
   }
-  
+  .search{
+    border-radius: 8px;
+   }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
+import { useNavigate } from "react-router-dom"; // import useNavigate
 import "../pages/Tvseries.css";
 import { API_KEY } from "../utility/constant";
 import Sidebar from "../component/Sidebar";
@@ -12,6 +13,7 @@ const TVSeries = () => {
   const [filteredTVSeries, setFilteredTVSeries] = useState([]);
   const dispatch = useDispatch();
   const bookmarkedTvSeries = useSelector((state) => state.netflix.bookmarkedTvSeries);
+  const navigate = useNavigate(); // initialize navigate
 
   useEffect(() => {
     const fetchTVSeries = async () => {
@@ -50,11 +52,13 @@ const TVSeries = () => {
     return bookmarkedTvSeries.some((t) => t.id === tvSeries.id);
   };
 
+  const handlePosterClick = (tvSeriesId) => {
+    navigate(`/tvseries/${tvSeriesId}`);
+  };
+
   return (
     <div className="app-container">
-      <div>
-        <Sidebar />
-      </div>
+      <Sidebar />
       <div className="tvseries-content">
         <div className="search-container">
           <input
@@ -72,6 +76,7 @@ const TVSeries = () => {
                 src={`https://image.tmdb.org/t/p/w500${tvSeries.poster_path}`}
                 alt={tvSeries.name}
                 className="tvseries-poster"
+                onClick={() => handlePosterClick(tvSeries.id)}
               />
               <button
                 className="bookmark-button"

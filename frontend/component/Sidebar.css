@@ -17,6 +17,7 @@
   background-color: #03021a; 
   overflow: hidden; 
   justify-content: space-between;
+  margin-bottom: 15px;
 }
 
 .top_section {
@@ -26,7 +27,8 @@
   padding: 20px;
   cursor: pointer;
   color: white;
-  border-bottom: 1px solid #444; /* Border below top section */
+  border-bottom: 3px solid #444; /* Border below top section */
+  font-size: 20px;
 }
 
 .top_section:hover {

@@ -53,13 +53,13 @@ const Movies = () => {
       </div>
       <div className="movies-content">
         <div className="search-container">
-          <input
+          <input className="search"
             type="text"
             placeholder="Search for a movie..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <button onClick={handleSearch}>Search</button>
+          <button className="search" onClick={handleSearch}>Search</button>
         </div>
         <div className="movies-container">
           {filteredMovies.map((movie) => (

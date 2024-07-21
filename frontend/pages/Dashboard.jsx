@@ -43,13 +43,13 @@ const Dashboard = () => {
       <Sidebar />
       <div className="dashboard-content">
         <div className="search-container">
-          <input
+          <input className="search"
             type="text"
             placeholder="Search for an item..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <button onClick={handleSearch}>Search</button>
+          <button className="search" onClick={handleSearch}>Search</button>
         </div>
         <div className="items-container">
           {filteredItems.map((item) => (

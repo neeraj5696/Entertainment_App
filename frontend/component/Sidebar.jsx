@@ -7,6 +7,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import "../component/Sidebar.css";
 
 const Sidebar = () => {
+  const navigate = useNavigate()
   const menuItem = [
     {
       path: "/dashboard",
