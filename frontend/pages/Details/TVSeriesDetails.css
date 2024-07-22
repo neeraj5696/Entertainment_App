@@ -1,0 +1,63 @@
+.details-container {
+  display: flex;
+
+}
+
+
+
+.tvseries-details {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-left: 1px solid #ccc;
+  
+}
+
+.tvseries-details h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.details-content {
+  display: flex;
+  gap: 20px;
+}
+
+.tvseries-details-poster {
+  width: 250px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.details-info {
+  max-width: 600px;
+  padding: 10px;
+}
+
+.details-info p {
+  margin: 10px 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.details-info strong {
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .details-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tvseries-details-poster {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .details-info {
+    max-width: 100%;
+    text-align: center;
+  }
+}

@@ -1,4 +1,3 @@
-// store.js
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -6,7 +5,8 @@ const initialState = {
   genresLoaded: false,
   genres: [],
   bookmarkedMovies: [],
-  bookmarkedTvSeries: [], 
+  bookmarkedTvSeries: [],
+  tvSeriesList: [], // Add tvSeriesList to initial state
 };
 
 const NetflixSlice = createSlice({
@@ -19,6 +19,9 @@ const NetflixSlice = createSlice({
     },
     setMovies: (state, action) => {
       state.movies = action.payload;
+    },
+    setTVSeries: (state, action) => {
+      state.tvSeriesList = action.payload; // Add setTVSeries reducer
     },
     addBookmark: (state, action) => {
       state.bookmarkedMovies.push(action.payload);
@@ -42,6 +45,7 @@ const NetflixSlice = createSlice({
 export const {
   setGenres,
   setMovies,
+  setTVSeries,
   addBookmark,
   addTvSeriesBookmark,
   removeBookmark,

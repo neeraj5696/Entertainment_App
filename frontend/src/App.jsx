@@ -6,6 +6,7 @@ import Movies from "../pages/Movie";
 import TvSeries from "../pages/Tvseries";
 import Bookmark from "../pages/Bookmark";
 import Dashboard from "../pages/Dashboard";
+import TVSeriesDetails from "../pages/Details/TVSeriesDetails";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/TvSeries" element={<TvSeries />} />
         <Route path="/bookmark" element={<Bookmark />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/tvseries/:id" element={<TVSeriesDetails />} />
       </Routes>
     </BrowserRouter>
   );
