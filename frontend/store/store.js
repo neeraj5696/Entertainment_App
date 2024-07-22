@@ -6,7 +6,8 @@ const initialState = {
   genres: [],
   bookmarkedMovies: [],
   bookmarkedTvSeries: [],
-  tvSeriesList: [], // Add tvSeriesList to initial state
+  tvSeriesList: [],
+  movieList: [] 
 };
 
 const NetflixSlice = createSlice({
@@ -22,6 +23,9 @@ const NetflixSlice = createSlice({
     },
     setTVSeries: (state, action) => {
       state.tvSeriesList = action.payload; // Add setTVSeries reducer
+    },
+    setMovieSeries: (state, action) => {
+      state.movieList = action.payload; // moviesSeries reducer
     },
     addBookmark: (state, action) => {
       state.bookmarkedMovies.push(action.payload);
@@ -46,6 +50,7 @@ export const {
   setGenres,
   setMovies,
   setTVSeries,
+  setMovieSeries,
   addBookmark,
   addTvSeriesBookmark,
   removeBookmark,

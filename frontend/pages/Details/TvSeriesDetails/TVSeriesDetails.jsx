@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Sidebar from "../../component/Sidebar";
+import Sidebar from "../../../component/Sidebar";
 import "./TVSeriesDetails.css"; // Import the CSS file for styling
 
 const TVSeriesDetails = () => {

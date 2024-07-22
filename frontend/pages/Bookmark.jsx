@@ -1,19 +1,22 @@
-import React, { useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import '../pages/Bookmark.css';
-import Sidebar from '../component/Sidebar';
+import React, { useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import "../pages/Bookmark.css";
 import { FaBookmark } from "react-icons/fa";
-import { removeBookmark, removeTvSeriesBookmark } from '../store/store';
+import { removeBookmark, removeTvSeriesBookmark } from "../store/store";
 
 function Bookmark() {
-  const bookmarkedMovies = useSelector((state) => state.netflix.bookmarkedMovies);
-  const bookmarkedTvSeries = useSelector((state) => state.netflix.bookmarkedTvSeries);
+  const bookmarkedMovies = useSelector(
+    (state) => state.netflix.bookmarkedMovies
+  );
+  const bookmarkedTvSeries = useSelector(
+    (state) => state.netflix.bookmarkedTvSeries
+  );
   const scrollRef = useRef(null);
   const dispatch = useDispatch();
 
   const scroll = (direction) => {
     const { current } = scrollRef;
-    if (direction === 'left') {
+    if (direction === "left") {
       current.scrollLeft -= 200;
     } else {
       current.scrollLeft += 200;
@@ -25,12 +28,13 @@ function Bookmark() {
   };
 
   return (
-    <div className='bookmark-container'>
-      <div><Sidebar /></div>
+    <div className="bookmark-container">
       <div>
         <div className="bookmarked-section">
           <h2>Bookmarked Movies</h2>
-          <button className="arrow-button left" onClick={() => scroll('left')}>&lt;</button>
+          <button className="arrow-button left" onClick={() => scroll("left")}>
+            &lt;
+          </button>
           <div className="horizontal-scroll" ref={scrollRef}>
             {bookmarkedMovies.map((movie) => (
               <div key={movie.id} className="movie-item">
@@ -46,13 +50,24 @@ function Bookmark() {
                   <FaBookmark />
                 </button>
                 <div className="flex">
-                  <div><p className="movie-title">{movie.title}</p></div>
-                  <div><p className="movie-vote_average">{movie.vote_average.toFixed(1)}</p></div>
+                  <div>
+                    <p className="movie-title">{movie.title}</p>
+                  </div>
+                  <div>
+                    <p className="movie-vote_average">
+                      {movie.vote_average.toFixed(1)}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
-          <button className="arrow-button right" onClick={() => scroll('right')}>&gt;</button>
+          <button
+            className="arrow-button right"
+            onClick={() => scroll("right")}
+          >
+            &gt;
+          </button>
         </div>
         <div className="bookmarked-section">
           <h2>Bookmarked TV Series</h2>
@@ -75,7 +90,9 @@ function Bookmark() {
                     <p className="tvseries-name">{tvSeries.name}</p>
                   </div>
                   <div>
-                    <p className="tvseries-vote_average">{tvSeries.vote_average.toFixed(1)}</p>
+                    <p className="tvseries-vote_average">
+                      {tvSeries.vote_average.toFixed(1)}
+                    </p>
                   </div>
                 </div>
               </div>

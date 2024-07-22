@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "../pages/Movies.css";
 import { API_KEY } from "../utility/constant";
 import Sidebar from "../component/Sidebar";
-import { addBookmark, removeBookmark } from "../store/store";
+import { addBookmark, removeBookmark, setMovieSeries } from "../store/store";
 import { useDispatch, useSelector } from "react-redux";
 
 const Movies = () => {
   const [movieList, setMovieList] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredMovies, setFilteredMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null); // State for selected movie
   const dispatch = useDispatch();
   const bookmarkedMovies = useSelector((state) => state.netflix.bookmarkedMovies);
+  const navigate = useNavigate(); // Use useNavigate for navigation
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -23,14 +24,14 @@ const Movies = () => {
         const data = await response.json();
         setMovieList(data.results);
         setFilteredMovies(data.results);
-        console.log(data.results);
+        dispatch(setMovieSeries(data.results)); // Dispatch the MovieList to the store
       } catch (error) {
         console.error("Error fetching movie list:", error);
       }
     };
 
     fetchMovies();
-  }, []);
+  }, [dispatch]);
 
   const handleSearch = () => {
     const filtered = movieList.filter((movie) =>
@@ -47,8 +48,8 @@ const Movies = () => {
     }
   };
 
-  const handleMovieClick = (movie) => {
-    setSelectedMovie(movie); // Set selected movie
+  const handlePosterClick = (movie) => {
+    navigate(`/MovieSeries/${movie.id}`); // Correct the navigation path
   };
 
   return (
@@ -72,7 +73,7 @@ const Movies = () => {
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title}
                 className="poster"
-                onClick={() => handleMovieClick(movie)} // Handle poster click
+                onClick={() => handlePosterClick(movie)} // Handle poster click
               />
               <button
                 className="bookmark-button"
@@ -91,23 +92,6 @@ const Movies = () => {
             </div>
           ))}
         </div>
-        {selectedMovie && ( // Conditionally render movie details
-          <div className="details">
-            <h2>Movie Details</h2>
-            <p><strong>Title:</strong> {selectedMovie.title}</p>
-            <p><strong>Overview:</strong> {selectedMovie.overview}</p>
-            <p><strong>Release Date:</strong> {selectedMovie.release_date}</p>
-            <p><strong>Vote Average:</strong> {selectedMovie.vote_average}</p>
-            <p><strong>Popularity:</strong> {selectedMovie.popularity}</p>
-            <p><strong>Original Language:</strong> {selectedMovie.original_language}</p>
-            <p><strong>Genres:</strong> {selectedMovie.genre_ids.join(', ')}</p>
-            <img
-              src={`https://image.tmdb.org/t/p/w500${selectedMovie.poster_path}`}
-              alt={selectedMovie.title}
-              className="details-poster"
-            />
-          </div>
-        )}
       </div>
     </div>
   );

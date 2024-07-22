@@ -1,0 +1,65 @@
+.details-container {
+  display: flex;
+  height: 100vh; /* Full height of the viewport */
+}
+
+.sidebar {
+  flex: 0 0 250px; /* Fixed width for the sidebar */
+}
+
+.movie-details {
+  flex: 1;
+  padding: 20px;
+  background-color: #f0f0f0;
+  overflow-y: auto; /* Enable vertical scrolling if needed */
+}
+
+.movie-details h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.details-content {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start; /* Align items to the start of the flex container */
+}
+
+.movie-details-poster {
+  width: 300px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.details-info {
+  flex: 1; /* Allow details-info to take the remaining space */
+  padding: 10px;
+}
+
+.details-info p {
+  margin: 10px 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.details-info strong {
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .details-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .movie-details-poster {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .details-info {
+    max-width: 100%;
+    text-align: center;
+  }
+}
