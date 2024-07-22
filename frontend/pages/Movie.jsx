@@ -10,6 +10,7 @@ const Movies = () => {
   const [movieList, setMovieList] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredMovies, setFilteredMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null); // State for selected movie
   const dispatch = useDispatch();
   const bookmarkedMovies = useSelector((state) => state.netflix.bookmarkedMovies);
 
@@ -46,46 +47,67 @@ const Movies = () => {
     }
   };
 
+  const handleMovieClick = (movie) => {
+    setSelectedMovie(movie); // Set selected movie
+  };
+
   return (
     <div className="app-container">
-      <div>
-        <Sidebar />
-      </div>
-      <div className="movies-content">
+      <Sidebar />
+      <div className="content">
         <div className="search-container">
-          <input className="search"
+          <input
+            className="search"
             type="text"
             placeholder="Search for a movie..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <button className="search" onClick={handleSearch}>Search</button>
+          <button className="search-button" onClick={handleSearch}>Search</button>
         </div>
-        <div className="movies-container">
+        <div className="items-container">
           {filteredMovies.map((movie) => (
-            <div key={movie.id} className="movie-item">
+            <div key={movie.id} className="item">
               <img
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title}
-                className="movie/tv-poster"
+                className="poster"
+                onClick={() => handleMovieClick(movie)} // Handle poster click
               />
               <button
-                className={`bookmark-button ${bookmarkedMovies.some((bm) => bm.id === movie.id) ? "bookmarked" : ""}`}
+                className="bookmark-button"
                 onClick={() => handleBookmark(movie)}
               >
                 {bookmarkedMovies.some((bm) => bm.id === movie.id) ? <FaBookmark /> : <FaRegBookmark />}
               </button>
               <div className="flex">
                 <div>
-                  <p className="movie-title">{movie.title.slice(0, 12)}</p>
+                  <p className="title">{movie.title.slice(0, 12)}</p>
                 </div>
                 <div>
-                  <p className="movie-vote_average">{movie.vote_average.toFixed(1)}</p>
+                  <p className="vote_average">{movie.vote_average.toFixed(1)}</p>
                 </div>
               </div>
             </div>
           ))}
         </div>
+        {selectedMovie && ( // Conditionally render movie details
+          <div className="details">
+            <h2>Movie Details</h2>
+            <p><strong>Title:</strong> {selectedMovie.title}</p>
+            <p><strong>Overview:</strong> {selectedMovie.overview}</p>
+            <p><strong>Release Date:</strong> {selectedMovie.release_date}</p>
+            <p><strong>Vote Average:</strong> {selectedMovie.vote_average}</p>
+            <p><strong>Popularity:</strong> {selectedMovie.popularity}</p>
+            <p><strong>Original Language:</strong> {selectedMovie.original_language}</p>
+            <p><strong>Genres:</strong> {selectedMovie.genre_ids.join(', ')}</p>
+            <img
+              src={`https://image.tmdb.org/t/p/w500${selectedMovie.poster_path}`}
+              alt={selectedMovie.title}
+              className="details-poster"
+            />
+          </div>
+        )}
       </div>
     </div>
   );

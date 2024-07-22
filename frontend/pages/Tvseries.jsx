@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
-import { useNavigate } from "react-router-dom"; // import useNavigate
 import "../pages/Tvseries.css";
 import { API_KEY } from "../utility/constant";
 import Sidebar from "../component/Sidebar";
@@ -11,9 +10,9 @@ const TVSeries = () => {
   const [tvSeriesList, setTvSeriesList] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredTVSeries, setFilteredTVSeries] = useState([]);
+  const [selectedTVSeries, setSelectedTVSeries] = useState(null); // State for selected TV series
   const dispatch = useDispatch();
   const bookmarkedTvSeries = useSelector((state) => state.netflix.bookmarkedTvSeries);
-  const navigate = useNavigate(); // initialize navigate
 
   useEffect(() => {
     const fetchTVSeries = async () => {
@@ -52,8 +51,8 @@ const TVSeries = () => {
     return bookmarkedTvSeries.some((t) => t.id === tvSeries.id);
   };
 
-  const handlePosterClick = (tvSeriesId) => {
-    navigate(`/tvseries/${tvSeriesId}`);
+  const handlePosterClick = (tvSeries) => {
+    setSelectedTVSeries(tvSeries); // Set selected TV series
   };
 
   return (
@@ -76,7 +75,7 @@ const TVSeries = () => {
                 src={`https://image.tmdb.org/t/p/w500${tvSeries.poster_path}`}
                 alt={tvSeries.name}
                 className="tvseries-poster"
-                onClick={() => handlePosterClick(tvSeries.id)}
+                onClick={() => handlePosterClick(tvSeries)} // Handle poster click
               />
               <button
                 className="bookmark-button"
@@ -97,6 +96,23 @@ const TVSeries = () => {
             </div>
           ))}
         </div>
+        {selectedTVSeries && ( // Conditionally render TV series details
+          <div className="tvseries-details">
+            <h2>TV Series Details</h2>
+            <p><strong>Name:</strong> {selectedTVSeries.name}</p>
+            <p><strong>Overview:</strong> {selectedTVSeries.overview}</p>
+            <p><strong>First Air Date:</strong> {selectedTVSeries.first_air_date}</p>
+            <p><strong>Vote Average:</strong> {selectedTVSeries.vote_average}</p>
+            <p><strong>Popularity:</strong> {selectedTVSeries.popularity}</p>
+            <p><strong>Original Language:</strong> {selectedTVSeries.original_language}</p>
+            <p><strong>Genres:</strong> {selectedTVSeries.genre_ids.join(', ')}</p>
+            <img
+              src={`https://image.tmdb.org/t/p/w500${selectedTVSeries.poster_path}`}
+              alt={selectedTVSeries.name}
+              className="tvseries-details-poster"
+            />
+          </div>
+        )}
       </div>
     </div>
   );

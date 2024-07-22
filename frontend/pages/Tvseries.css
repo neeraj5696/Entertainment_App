@@ -1,113 +1,126 @@
-/* TVSeries.css */
+/* Tvseries.css */
 
 .app-container {
-    display: flex;
-    height: 100vh; 
-    overflow: hidden;
-  }
-  
-  .sidebar {
-    width: 200px; 
-    background-color: #333;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-    overflow-y: auto;
-  }
-  
-  .tvseries-content {
-    flex: 1; 
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto; 
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  
-  .search-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .search-container input {
-    padding: 10px;
-    width: 200px;
-    margin-right: 10px;
-  }
-  
-  .search-container button {
-    padding: 10px;
-  }
-  
-  .tvseries-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-  }
-  
-  .tvseries-item {
-    position: relative;
-    width: 150px; 
-    border: 3px solid rgb(35, 35, 220);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  
-  .tvseries-item::before {
-    content: "";
-    display: block;
-    padding-bottom: 150%; 
-  }
-  
-  .tvseries-item img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .bookmark-button {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .flex {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 5px;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    z-index: 2;
-  }
-  
-  .tvseries-name, .tvseries-vote_average {
-    margin: 0;
-  }
-  
-  .bookmarked-section {
-    margin-top: 20px;
-  }
-  
-  .bookmarked-section h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  .search{
-    border-radius: 8px;
-   }
-  
+  display: flex;
+  background-color: #121212;
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
+  height: 100vh;
+}
+
+.tvseries-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.search-container input {
+  padding: 10px;
+  border: 2px solid #ff6f61;
+  border-radius: 5px;
+  background-color: #333;
+  color: #ffffff;
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.search-container button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff6f61;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.tvseries-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.tvseries-item {
+  position: relative;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  width: 180px;
+  transition: transform 0.3s ease;
+}
+
+.tvseries-item:hover {
+  transform: scale(1.05);
+}
+
+.tvseries-poster {
+  border-radius: 10px;
+  cursor: pointer;
+  max-width: 100%;
+  height: 270px;
+}
+
+.bookmark-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #ff6f61;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.tvseries-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.tvseries-vote_average {
+  background-color: #ff6f61;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.tvseries-details {
+  margin-top: 20px;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.tvseries-details h2 {
+  font-size: 24px;
+  color: #ff6f61;
+  border-bottom: 2px solid #ff6f61;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.tvseries-details p {
+  margin: 10px 0;
+}
+
+.tvseries-details-poster {
+  border-radius: 10px;
+  max-width: 100%;
+  margin-top: 20px;
+}

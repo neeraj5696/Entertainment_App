@@ -1,114 +1,126 @@
+/* Shared styles for Movies and TVSeries */
+
 .app-container {
   display: flex;
-  height: 100vh; /* Full height to fit the screen */
-  overflow: hidden;
+  background-color: #121212;
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
+  height: 100vh;
 }
 
-.sidebar {
-  width: 200px; /* Adjust the width of the sidebar */
-  background-color: #333;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px 0;
-  overflow-y: auto; /* Scrollable sidebar */
-}
-
-.movies-content {
-  flex: 1; /* Take the remaining width */
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto; /* Scrollable content */
+.content {
+  flex: 1;
   padding: 20px;
-  box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .search-container {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
-  border-radius: ;
 }
 
 .search-container input {
   padding: 10px;
-  width: 200px;
+  border: 2px solid #ff6f61;
+  border-radius: 5px;
+  background-color: #333;
+  color: #ffffff;
   margin-right: 10px;
+  font-size: 16px;
 }
 
 .search-container button {
-  padding: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff6f61;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-.movies-container {
+.items-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+  justify-content: space-around;
 }
 
-.movie-item {
+.item {
   position: relative;
-  width: 150px; /* Adjust to reduce the size */
-  border: 3px solid rgb(35, 35, 220);
+  background-color: #1e1e1e;
   border-radius: 10px;
-  overflow: hidden;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  width: 180px;
+  transition: transform 0.3s ease;
 }
 
-.movie-item::before {
-  content: "";
-  display: block;
-  padding-bottom: 150%; /* 2/3 aspect ratio */
+.item:hover {
+  transform: scale(1.05);
 }
 
-.movie-item img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.poster {
+  border-radius: 10px;
+  cursor: pointer;
+  max-width: 100%;
+  height: 270px;
 }
 
 .bookmark-button {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 10px;
+  right: 10px;
   background: none;
   border: none;
-  color: white;
+  color: #ff6f61;
   cursor: pointer;
+  font-size: 24px;
 }
 
 .flex {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.vote_average {
+  background-color: #ff6f61;
+  border-radius: 5px;
   padding: 5px;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  z-index: 2;
+  font-size: 14px;
+  color: #ffffff;
 }
 
-.movie-title, .movie-vote_average {
-  margin: 0;
-  
-}
-
-.bookmarked-section {
+.details {
   margin-top: 20px;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.bookmarked-section h2 {
-  text-align: center;
+.details h2 {
+  font-size: 24px;
+  color: #ff6f61;
+  border-bottom: 2px solid #ff6f61;
+  padding-bottom: 10px;
   margin-bottom: 20px;
 }
-.search{
- border-radius: 8px;
+
+.details p {
+  margin: 10px 0;
 }
 
-
+.details-poster {
+  border-radius: 10px;
+  max-width: 100%;
+  margin-top: 20px;
+}
