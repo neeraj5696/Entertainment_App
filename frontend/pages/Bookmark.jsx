@@ -4,6 +4,7 @@ import "../pages/Bookmark.css";
 import { FaBookmark } from "react-icons/fa";
 import { removeBookmark, removeTvSeriesBookmark } from "../store/store";
 
+
 function Bookmark() {
   const bookmarkedMovies = useSelector(
     (state) => state.netflix.bookmarkedMovies
@@ -32,9 +33,7 @@ function Bookmark() {
       <div>
         <div className="bookmarked-section">
           <h2>Bookmarked Movies</h2>
-          <button className="arrow-button left" onClick={() => scroll("left")}>
-            &lt;
-          </button>
+         
           <div className="horizontal-scroll" ref={scrollRef}>
             {bookmarkedMovies.map((movie) => (
               <div key={movie.id} className="movie-item">
@@ -62,12 +61,7 @@ function Bookmark() {
               </div>
             ))}
           </div>
-          <button
-            className="arrow-button right"
-            onClick={() => scroll("right")}
-          >
-            &gt;
-          </button>
+         
         </div>
         <div className="bookmarked-section">
           <h2>Bookmarked TV Series</h2>

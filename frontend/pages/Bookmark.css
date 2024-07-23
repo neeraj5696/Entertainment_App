@@ -1,70 +1,84 @@
-/* Movies.css */
+.bookmark-container {
+  background-color: #111;
+  color: #ffffff;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+}
 
 .bookmarked-section {
-    margin-top: 40px;
-    position: relative;
-  }
-  
-  .bookmarked-section h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .horizontal-scroll {
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding: 20px 0;
-  }
-  
-  .movie-item {
-    flex: 0 0 auto;
-    margin-right: 20px;
-  }
-  
-  .movie-poster {
-    width: 150px;
-    height: 225px;
-    object-fit: cover;
-    border-radius: 8px;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  
-  .movie-poster:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-  }
-  
-  .movie-title, .movie-vote_average {
-    margin: 0;
-  }
-  
-  .arrow-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 1;
-  }
-  
-  .arrow-button.left {
-    left: 0;
-  }
-  
-  .arrow-button.right {
-    right: 0;
-  }
-  .search{
-    border-radius: 8px;
-   }
+  margin-bottom: 30px;
+}
+
+.bookmarked-section h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #ff6f61; /* Horizontal line under heading */
+  padding-bottom: 5px;
+}
+
+.horizontal-line {
+  width: 100%;
+  height: 1px;
+  background-color: #ff6f61; /* Color of the horizontal line */
+  margin-bottom: 10px;
+}
+
+.horizontal-scroll {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Space between items */
+}
+
+.movie-item, .tvseries-item {
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  width: 180px; /* Adjust width as needed */
+  overflow: hidden;
+  position: relative;
+}
+
+.movie-poster, .tvseries-poster {
+  border-radius: 10px;
+  width: 100%;
+  height: 270px; /* Adjust height as needed */
+  object-fit: cover;
+}
+
+.bookmark-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #f8f7f7;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.title,
+.tvseries-name {
+  font-size: 16px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 120px;
+}
+
+.vote_average,
+.tvseries-vote_average {
+  background-color: #ff6f61;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 14px;
+  color: #ffffff;
+  margin-left: 5px;
+}

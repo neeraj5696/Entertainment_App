@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { FaRegBookmark, FaBookmark } from "react-icons/fa";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { FaRegBookmark, FaBookmark, FaPlay } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import "../pages/Movies.css";
 import { API_KEY } from "../utility/constant";
 import Sidebar from "../component/Sidebar";
@@ -13,7 +13,7 @@ const Movies = () => {
   const [filteredMovies, setFilteredMovies] = useState([]);
   const dispatch = useDispatch();
   const bookmarkedMovies = useSelector((state) => state.netflix.bookmarkedMovies);
-  const navigate = useNavigate(); // Use useNavigate for navigation
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -24,7 +24,7 @@ const Movies = () => {
         const data = await response.json();
         setMovieList(data.results);
         setFilteredMovies(data.results);
-        dispatch(setMovieSeries(data.results)); // Dispatch the MovieList to the store
+        dispatch(setMovieSeries(data.results));
       } catch (error) {
         console.error("Error fetching movie list:", error);
       }
@@ -49,7 +49,7 @@ const Movies = () => {
   };
 
   const handlePosterClick = (movie) => {
-    navigate(`/MovieSeries/${movie.id}`); // Correct the navigation path
+    navigate(`/MovieSeries/${movie.id}`);
   };
 
   return (
@@ -64,30 +64,30 @@ const Movies = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <button className="search-button" onClick={handleSearch}>Search</button>
+          <button className="search-button" onClick={handleSearch}>
+            Search
+          </button>
         </div>
         <div className="items-container">
           {filteredMovies.map((movie) => (
             <div key={movie.id} className="item">
-              <img
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt={movie.title}
-                className="poster"
-                onClick={() => handlePosterClick(movie)} // Handle poster click
-              />
-              <button
-                className="bookmark-button"
-                onClick={() => handleBookmark(movie)}
-              >
-                {bookmarkedMovies.some((bm) => bm.id === movie.id) ? <FaBookmark /> : <FaRegBookmark />}
-              </button>
+              <div className="poster-container">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.title}
+                  className="poster"
+                  onClick={() => handlePosterClick(movie)}
+                />
+                <button className="bookmark-button" onClick={() => handleBookmark(movie)}>
+                  {bookmarkedMovies.some((bm) => bm.id === movie.id) ? <FaBookmark /> : <FaRegBookmark />}
+                </button>
+                <button className="replay-button" onClick={() => handlePosterClick(movie)}>
+                  <FaPlay />
+                </button>
+              </div>
               <div className="flex">
-                <div>
-                  <p className="title">{movie.title.slice(0, 12)}</p>
-                </div>
-                <div>
-                  <p className="vote_average">{movie.vote_average.toFixed(1)}</p>
-                </div>
+                <p className="title">{movie.title}</p>
+                <p className="vote_average">{movie.vote_average.toFixed(1)}</p>
               </div>
             </div>
           ))}

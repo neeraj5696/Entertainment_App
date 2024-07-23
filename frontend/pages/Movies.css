@@ -1,8 +1,8 @@
-/* Shared styles for Movies and TVSeries */
+ 
 
 .app-container {
   display: flex;
-  background-color: #121212;
+  background-color: #995757;
   color: #ffffff;
   font-family: 'Arial', sans-serif;
   height: 100vh;
@@ -61,9 +61,13 @@
   transform: scale(1.05);
 }
 
+.poster-container {
+  /* position: absolute; */
+  cursor: pointer;
+}
+
 .poster {
   border-radius: 10px;
-  cursor: pointer;
   max-width: 100%;
   height: 270px;
 }
@@ -71,13 +75,38 @@
 .bookmark-button {
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 3px;
   background: none;
   border: none;
-  color: #ff6f61;
+  color: #f8f7f7;
   cursor: pointer;
   font-size: 24px;
 }
+
+.replay-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgb(255, 0, 0); 
+  border: none;
+  border-radius: 20%; /* Make it a circular button */
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 5px;
+  width: 60px;
+  height: 40px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.poster-container:hover .replay-button {
+  display: flex; 
+}
+
+
 
 .flex {
   display: flex;
@@ -86,17 +115,24 @@
   margin-top: 10px;
 }
 
-.title {
+.title,
+.tvseries-name {
   font-size: 16px;
   font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 120px;
 }
 
-.vote_average {
+.vote_average,
+.tvseries-vote_average {
   background-color: #ff6f61;
   border-radius: 5px;
   padding: 5px;
   font-size: 14px;
   color: #ffffff;
+  margin-left: 5px;
 }
 
 .details {
@@ -123,4 +159,4 @@
   border-radius: 10px;
   max-width: 100%;
   margin-top: 20px;
-}
+} 

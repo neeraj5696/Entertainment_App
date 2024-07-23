@@ -1,0 +1,312 @@
+
+
+.app-container {
+  display: flex;
+  background-color: #121212;
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
+  height: 100vh;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.search-container input {
+  padding: 10px;
+  border: 2px solid #ff6f61;
+  border-radius: 5px;
+  background-color: #333;
+  color: #ffffff;
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.search-container button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff6f61;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.items-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.item {
+  position: relative;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  width: 180px;
+  transition: transform 0.3s ease;
+}
+
+.item:hover {
+  transform: scale(1.05);
+}
+
+.poster-container {
+  position: relative;
+  cursor: pointer;
+}
+
+.poster {
+  border-radius: 10px;
+  max-width: 100%;
+  height: 270px;
+}
+
+.bookmark-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #ff6f61;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.replay-button {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  color: #ff6f61;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 10px;
+  display: none;
+}
+
+.poster-container:hover .replay-button {
+  display: block;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.title,
+.tvseries-name {
+  font-size: 16px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 120px;
+}
+
+.vote_average,
+.tvseries-vote_average {
+  background-color: #ff6f61;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 14px;
+  color: #ffffff;
+  margin-left: 5px;
+}
+
+.details {
+  margin-top: 20px;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.details h2 {
+  font-size: 24px;
+  color: #ff6f61;
+  border-bottom: 2px solid #ff6f61;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.details p {
+  margin: 10px 0;
+}
+
+.details-poster {
+  border-radius: 10px;
+  max-width: 100%;
+  margin-top: 20px;
+}
+/* Shared styles for Movies and TVSeries */
+
+.app-container {
+  display: flex;
+  background-color: #121212;
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
+  height: 100vh;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.search-container input {
+  padding: 10px;
+  border: 2px solid #ff6f61;
+  border-radius: 5px;
+  background-color: #333;
+  color: #ffffff;
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.search-container button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff6f61;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.items-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.item {
+  position: relative;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  width: 180px;
+  transition: transform 0.3s ease;
+}
+
+.item:hover {
+  transform: scale(1.05);
+}
+
+.poster-container {
+  position: relative;
+  cursor: pointer;
+}
+
+.poster {
+  border-radius: 10px;
+  max-width: 100%;
+  height: 270px;
+}
+
+.bookmark-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #ff6f61;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.replay-button {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  color: #ff6f61;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 10px;
+  display: none;
+}
+
+.poster-container:hover .replay-button {
+  display: block;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.title,
+.tvseries-name {
+  font-size: 16px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 120px;
+}
+
+.vote_average,
+.tvseries-vote_average {
+  background-color: #ff6f61;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 14px;
+  color: #ffffff;
+  margin-left: 5px;
+}
+
+.details {
+  margin-top: 20px;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.details h2 {
+  font-size: 24px;
+  color: #ff6f61;
+  border-bottom: 2px solid #ff6f61;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.details p {
+  margin: 10px 0;
+}
+
+.details-poster {
+  border-radius: 10px;
+  max-width: 100%;
+  margin-top: 20px;
+}

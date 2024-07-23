@@ -1,8 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Sidebar from "../../../component/Sidebar";
-// import "../pages/Details/MovieDEtails/MovieDetails.css"// Import the CSS file for styling
+import "./MoviesDetails.css"; // Import the common CSS file
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -17,14 +16,13 @@ const MovieDetails = () => {
 
   return (
     <div className="details-container">
-     
-      <div className="movie-details">
+      <div className="details-card">
         <h2>Movie Details</h2>
         <div className="details-content">
           <img
             src={`https://image.tmdb.org/t/p/w500${selectedMovie.poster_path}`}
             alt={selectedMovie.title}
-            className="movie-details-poster"
+            className="details-poster"
           />
           <div className="details-info">
             <p>
