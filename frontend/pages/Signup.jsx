@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../utility/firebase";
+import axios from 'axios';
 import "../pages/Signup.css";
 
 function Signup() {
@@ -9,42 +8,30 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rpassword, setRpassword] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleRegister = async (e) => {
     e.preventDefault();
     if (password !== rpassword) {
-      setErrorMessage("Passwords do not match!");
+      setMessage("Passwords do not match!");
       return;
     }
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      setSuccessMessage("Registered successfully! Redirecting...");
-      
-      // Redirect to dashboard after a short delay to show success message
+      await axios.post('http://localhost:5000/api/auth/register', { email, password });
+      setMessage("Registered successfully! Redirecting...");
       setTimeout(() => {
         navigate("/dashboard");
-      }, 2000); // 2 seconds delay
+      }, 2000);
     } catch (error) {
-      console.log("Error occurred", error);
-      setErrorMessage("Failed to register. Please try again.");
+      console.error("Error occurred", error);
+      setMessage("Failed to register. Please try again.");
     }
   };
 
   return (
     <div className="form-container">
       <form onSubmit={handleRegister} className="form">
-        {successMessage && (
-          <div className="success-message">
-            {successMessage}
-          </div>
-        )}
-        {errorMessage && (
-          <div className="error-message">
-            {errorMessage}
-          </div>
-        )}
+        {message && <div className="message">{message}</div>}
         <div className="input-container">
           <input
             type="text"
