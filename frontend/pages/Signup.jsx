@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
-import '../pages/MoviesAndTVSeries.css'
+import { MdMovie } from "react-icons/md";
+import axios from "axios";
+import "../pages/auth.css";
 
 function Signup() {
   const navigate = useNavigate();
@@ -17,7 +18,10 @@ function Signup() {
       return;
     }
     try {
-      await axios.post('http://localhost:5000/api/auth/register', { email, password });
+      await axios.post("http://localhost:5000/api/auth/register", {
+        email,
+        password,
+      });
       setMessage("Registered successfully! Redirecting...");
       setTimeout(() => {
         navigate("/dashboard");
@@ -32,6 +36,9 @@ function Signup() {
     <div className="form-container">
       <form onSubmit={handleRegister} className="form">
         {message && <div className="message">{message}</div>}
+        <div className="movie-icon">
+          <MdMovie />
+        </div>
         <div className="input-container">
           <input
             type="text"
@@ -65,7 +72,7 @@ function Signup() {
         <div className="account-message">
           Already have an account?
           <button
-            className="login-button"
+            className="redirect-button"
             onClick={() => navigate("/login")}
             type="button"
           >
