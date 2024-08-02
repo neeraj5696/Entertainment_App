@@ -7,7 +7,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import "../component/Sidebar.css";
 
 const Sidebar = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const menuItem = [
     {
       path: "/dashboard",
@@ -30,33 +30,33 @@ const Sidebar = () => {
       icon: <GoBookmark />,
     },
   ];
+
   return (
     <div>
-      <div className="conta" >
-        <div className="fox1" >
-        <div className="top_section" onClick={() => navigate("/")}>
-          Home
+      <div className="conta">
+        <div className="fox1">
+          <div className="top_section" onClick={() => navigate("/")}>
+            Home
+          </div>
+          <div className="icon-container">
+            {menuItem.map((item, index) => (
+              <NavLink
+                to={item.path}
+                key={index}
+                className="link"
+                activeClassName="active"
+              >
+                <div className="icon">{item.icon}</div>
+                <div className="link_text">{item.name}</div>
+              </NavLink>
+            ))}
+          </div>
         </div>
-        <div className="icon-container">
-          {menuItem.map((item, index) => (
-            <NavLink
-              to={item.path}
-              key={index}
-              className="link"
-              activeClassName="active"
-            >
-              <div className="icon">{item.icon}</div>
-              <div className="link_text">{item.name}</div>
-            </NavLink>
-          ))}
-        </div>
-        </div>
-       
-        <div className="fox2" >
-        <div className="bottom_section" onClick={() => navigate("/signup")}>
-          <FaUser className="user_icon" />
-          <div className="link_text">Signup</div>
-        </div>
+        <div className="fox2">
+          <div className="bottom_section" onClick={() => navigate("/signup")}>
+            <FaUser className="user_icon" />
+            <div className="link_text">Signup</div>
+          </div>
         </div>
       </div>
     </div>

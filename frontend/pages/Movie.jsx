@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaRegBookmark, FaBookmark, FaPlay } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import "../pages/Movies.css";
+// import "../pages/Movies.css";
 import { API_KEY } from "../utility/constant";
 import Sidebar from "../component/Sidebar";
 import { addBookmark, removeBookmark, setMovieSeries } from "../store/store";

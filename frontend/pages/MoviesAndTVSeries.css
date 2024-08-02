@@ -1,102 +1,171 @@
-body, html {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color:rgb(31, 91, 103);
-  font-family: Arial, sans-serif;
-}
+ 
 
-.form-container {
+.app-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+  background-color: #995757;
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
   height: 100vh;
 }
 
-.form {
-  background: #0d193a;
+.content {
+  flex: 1;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 300px;
+  overflow-y: auto;
+}
+
+.search-container {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
-.input-container {
-  margin-bottom: 15px;
-}
-
-.input-container input {
-  width: 100%;
+.search-container input {
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+  border: 2px solid #ff6f61;
+  border-radius: 5px;
+  background-color: #333;
+  color: #ffffff;
+  margin-right: 10px;
+  font-size: 16px;
 }
 
-.button-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 15px;
-}
-
-.button-container button {
-  width: 100%;
-  padding: 10px;
+.search-container button {
+  padding: 10px 20px;
   border: none;
-  border-radius: 4px;
-  background-color: #007bff;
-  color: #fff;
+  border-radius: 5px;
+  background-color: #ff6f61;
+  color: #ffffff;
+  font-size: 16px;
   cursor: pointer;
+}
+
+.items-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.item {
+  position: relative;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  width: 180px;
+  transition: transform 0.3s ease;
+}
+
+.item:hover {
+  transform: scale(1.05);
+}
+
+.poster-container {
+  /* position: absolute; */
+  cursor: pointer;
+}
+
+.poster {
+  border-radius: 10px;
+  max-width: 100%;
+  height: 270px;
+}
+
+.bookmark-button {
+  position: absolute;
+  top: 10px;
+  right: 3px;
+  background: none;
+  border: none;
+  color: #f8f7f7;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.replay-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgb(255, 0, 0); 
+  border: none;
+  border-radius: 20%; /* Make it a circular button */
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 5px;
+  width: 60px;
+  height: 40px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.poster-container:hover .replay-button {
+  display: flex; 
+}
+
+
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 10px;
 }
 
-.button-container button:hover {
-  background-color: #0056b3;
+.title,
+.tvseries-name {
+  font-size: 16px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 120px;
 }
 
-.account-message {
-  text-align: center;
-  margin-top: 20px;
-  color: white;
-}
-
-.account-message button {
-  background: none;
-  color: #007bff;
-  border: none;
-  cursor: pointer;
-  padding: 0;
+.vote_average,
+.tvseries-vote_average {
+  background-color: #ff6f61;
+  border-radius: 5px;
+  padding: 5px;
   font-size: 14px;
+  color: #ffffff;
+  margin-left: 5px;
 }
 
-.account-message button:hover {
-  text-decoration: underline;
+.details {
+  margin-top: 20px;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
- .login-button{
-  margin-top: 0px;
-  margin-bottom: 0px;
-  margin-right: 8px;
-  margin-left: 8px;
- }
- 
- .success-message {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 10px;
-  background-color: #4caf50;
-  color: white;
-  text-align: center;
-  z-index: 1000;
+
+.details h2 {
+  font-size: 24px;
+  color: #ff6f61;
+  border-bottom: 2px solid #ff6f61;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 }
-.login_button{
-  margin-left: 4px;;
+
+.details p {
+  margin: 10px 0;
+}
+
+.details-poster {
+  border-radius: 10px;
+  max-width: 100%;
+  margin-top: 20px;
+} 
+
+@media (max-width: 768px) {
+  .app-container {
+    display: block;
+    height: auto;
+    width: 100%;
+    flex-direction: column;
+  }
 }
