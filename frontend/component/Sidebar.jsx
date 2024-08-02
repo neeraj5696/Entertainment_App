@@ -37,7 +37,7 @@ const Sidebar = () => {
         <div className="top_section" onClick={() => navigate("/")}>
           Home
         </div>
-        <div className="">
+        <div className="icon-container">
           {menuItem.map((item, index) => (
             <NavLink
               to={item.path}
