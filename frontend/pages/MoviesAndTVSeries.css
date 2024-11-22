@@ -169,3 +169,8 @@
     flex-direction: column;
   }
 }
+
+.adsense-container {
+  margin: 20px 0;
+  text-align: center;
+}

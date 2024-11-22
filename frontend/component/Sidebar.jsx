@@ -30,6 +30,10 @@ const Sidebar = () => {
       icon: <GoBookmark />,
     },
   ];
+  // // Initialize AdSense when the component mounts
+  // useEffect(() => {
+  //   (window.adsbygoogle = window.adsbygoogle || []).push({});
+  // }, []);
 
   return (
     <div>
@@ -52,6 +56,19 @@ const Sidebar = () => {
             ))}
           </div>
         </div>
+
+        {/* AdSense Code in Sidebar */}
+        <div className="fox0">
+         <div>hello</div>
+          <ins
+            className="adsbygoogle"
+            style={{ display: "block" }}
+            data-ad-client="ca-pub-1263168028087570"
+            data-ad-slot="1234567890"
+            data-ad-format="auto"
+          ></ins>
+        </div>
+
         <div className="fox2">
           <div className="bottom_section" onClick={() => navigate("/signup")}>
             <FaUser className="user_icon" />

@@ -87,7 +87,10 @@ const TVSeries = () => {
                 </button>
               </div>
               <div className="flex">
-                <p className="title tvseries-name">{tvSeries.name}</p>
+
+                {(tvSeries.name || movie.name).slice(0, 21)} <br />
+                {(tvSeries.name || movie.name).length > 21 ? (tvSeries.name || movie.name).slice(21) : ""}
+
                 <p className="vote_average tvseries-vote_average">
                   {tvSeries.vote_average.toFixed(1)}
                 </p>

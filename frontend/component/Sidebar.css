@@ -144,3 +144,17 @@
     align-items: center;
   }
 }
+
+
+/* Add styling for the "hello" text */
+.fox0 {
+  background-color: #444; /* Set a background to make sure the text is visible */
+  color: white;            /* Set text color */
+  padding: 20px;           /* Add padding for spacing */
+  text-align: center;      /* Center the text */
+  font-size: 20px;         /* Increase font size for visibility */
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
